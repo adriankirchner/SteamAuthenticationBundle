@@ -20,14 +20,6 @@ class SteamCallbackResolver implements ValueResolverInterface
     /**
      * @inheritDoc
      */
-    public function supports(Request $request, ArgumentMetadata $argument): bool
-    {
-        return $argument->getType() === SteamCallback::class;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         $steamCallback = SteamCallback::fromRequest($request);
