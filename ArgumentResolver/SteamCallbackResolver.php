@@ -22,6 +22,10 @@ class SteamCallbackResolver implements ValueResolverInterface
      */
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
+        if ($argument->getType() !== SteamCallback::class) {
+            return [];
+        }
+
         $steamCallback = SteamCallback::fromRequest($request);
 
         $errors = $this->validator->validate($steamCallback);
