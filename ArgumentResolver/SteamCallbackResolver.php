@@ -4,7 +4,7 @@ namespace Knojector\SteamAuthenticationBundle\ArgumentResolver;
 
 use Knojector\SteamAuthenticationBundle\DTO\SteamCallback;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
+use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * @author knojector <dev@knojector.xyz>
  */
-class SteamCallbackResolver implements ArgumentValueResolverInterface
+class SteamCallbackResolver implements ValueResolverInterface
 {
     public function __construct(private ValidatorInterface $validator)
     {}
