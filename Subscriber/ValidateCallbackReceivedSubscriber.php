@@ -38,11 +38,21 @@ class ValidateCallbackReceivedSubscriber implements EventSubscriberInterface
         $callback = $event->getSteamCallback();
         $callback->openid_mode = 'check_authentication';
 
+        $newCallback = [];
+        foreach ((array)$callback as $key => $value) {
+            if (str_starts_with($key, 'openid_')) {
+                $newKey = str_replace('openid_', 'openid.', $key);
+            } else {
+                $newKey = $key;
+            }
+            $newCallback[$newKey] = $value;
+        }
+
         $response = $this->client->request(
             'POST',
             self::STEAM_VALIDATION_URL,
             [
-                'body' => (array) $callback
+                'body' => $newCallback
             ]
         );
 
